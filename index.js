@@ -1,9 +1,24 @@
 const express = require('express');
-const app = express()
+const app = express();
+
 const port = 3000
 
-app.get('/', (req,res) => res.send('Hello world'))
-app.get('/users', (req,res) => res.send('UserList'))
+app.set('view engine', 'pug');
+app.set('views', './views');
 
 
-app.listen(port, ()=> console.log('Example app listening at http://localhost:' + port))
+app.get('/', function(req,res){
+	res.render('index', {
+		name: "Truong"
+	});
+});
+
+app.get('/users', (req,res) => res.render('users/index', {
+	users: [
+	{id: 1, name: 'Thinh'},
+	{id: 2, name: 'Truong'}
+	]
+}));
+
+
+app.listen(port, ()=> console.log('Example app listening at http://localhost:' + port));
