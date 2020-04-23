@@ -1,8 +1,13 @@
-extends ../layouts/common.pug
+extends ../layouts/common
 
 block content
-	h1 View User
+	div(class="container")
+		h1 View User
 
-	p
-		b Name
-		span= user.name
+		table.table
+			td Name
+			td Phone
+
+			tr
+				td= user.name
+				td= user.phone

@@ -10,9 +10,14 @@ block content
 			input(type="text" name="q" required, class="form-control")
 			button(class="btn btn-primary ml-2") Search
 
-		ul(class="list-group")
+		table.table
+			tr
+				td Name
+				td Phone
+				td Action
 			each user in users
-				li(class="list-group-item")
-					span= user.name
-					span &nbsp;
-					a(href="/users/" + user.id) View
+				tr
+					td= user.name
+					td= user.phone
+					td
+						a.btn.btn-light(href="/users/" + user.id) View
