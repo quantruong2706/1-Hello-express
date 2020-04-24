@@ -7,11 +7,13 @@ const controller = require('../controllers/user.controller');
 
 const validate = require('../validate/user.validate')
 
-router.get('/', controller.index);
+const authMiddleware = require('../middlewares/auth.middleware');
+
+router.get('/',authMiddleware.requireAuth ,controller.index);
 
 router.get('/cookie', function(req, res){
 	res.cookie('user-id', 12345);
-	res.send("Hello");
+	res.send("Hello" );
 });
 
 router.get('/search', controller.search);
