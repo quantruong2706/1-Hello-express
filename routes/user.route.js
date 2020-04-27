@@ -9,6 +9,10 @@ const validate = require('../validate/user.validate')
 
 const authMiddleware = require('../middlewares/auth.middleware');
 
+const multer = require('multer');
+
+var upload = multer({ dest: './public/uploads/'})
+
 router.get('/',authMiddleware.requireAuth ,controller.index);
 
 router.get('/cookie', function(req, res){
@@ -22,6 +26,10 @@ router.get('/create', controller.create);
 
 router.get('/:id', controller.getId);
 
-router.post('/create',validate.postCreate, controller.postCreate);
+router.post('/create',
+	upload.single('avatar'),
+	validate.postCreate,
+	 controller.postCreate
+);
 
 module.exports = router;
